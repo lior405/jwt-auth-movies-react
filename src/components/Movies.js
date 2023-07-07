@@ -1,10 +1,12 @@
-import React, { useEffect, useState,useContext } from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import MovieItem from './MovieItem';
 import { UserContext } from './UserContext';
+import {Link} from "react-router-dom";
 
 
 const Movies = (props) => {
-    const [userContext] = useContext(UserContext);
+
+    const [userContext, setUserContext] = useContext(UserContext);
     const [movies,setMovies] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
 
@@ -51,9 +53,15 @@ const Movies = (props) => {
 
     useEffect(() => {
         getMovieDetails(process.env.REACT_APP_MOVIE_ENDPOINT_HOME);
+
     }, []);
 
-    
+    function showCards() {
+        setUserContext((oldValue) => {
+            return setUserContext({...oldValue, cards: true})
+        })
+    }
+
     return (
         <div>
             <div className='welcome-details' >
@@ -74,8 +82,9 @@ const Movies = (props) => {
                     <input className="bp4-input" placeholder="Search Movie..." value={searchTerm} onChange={handleOnChange} type="text" />
                     </form>
                     <span className="bp4-navbar-divider"></span>
+                    <button className="bp4-button bp4-minimal bp4-icon-home" onClick={showCards}>Home Page</button>
                     <button className="bp4-button bp4-minimal bp4-icon-antenna" onClick={props.refetchHandler}>Refetch</button>
-                    <button className="bp4-button bp4-minimal bp4-icon-log-out" onClick={props.logoutHandler}>Logout</button>
+                    <button className="bp4-button bp4-minimal bp4-icon-log-out" onClick={props.logoutHandler}><Link to={"/"}> Logout </Link></button>
                 </div>
             </nav>
         </div>

@@ -7,7 +7,9 @@ import { UserProvider } from './components/UserContext';
 const container = document.getElementById('root');
 const root = createRoot(container);
 
-root.render(<UserProvider> <App tab="home" /> </UserProvider>);
+root.render(<React.StrictMode>
+    <UserProvider> <App tab="home" /> </UserProvider>
+</React.StrictMode> );
 
 
 
