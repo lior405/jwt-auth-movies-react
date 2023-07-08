@@ -1,8 +1,9 @@
-/*.homeCards {*/
-/*    !*height: 125vh;*!*/
-/*    !*background: #141414;*!*/
-/*    !*width: 100%;*!*/
-/*    !*padding-left: 35px;*!*/
-/*    display: inline;*/
-/*    background-color: #404854;*/
-/*}*/
+.homeCards {
+    display: inline-block;
+    margin: 3rem 0 0 12rem;
+}
+
+.bottomCards {
+    background-color: #2C3E50;
+    color: white;
+}

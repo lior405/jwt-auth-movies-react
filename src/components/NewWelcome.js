@@ -2,9 +2,10 @@ import React, {useCallback, useContext, useEffect} from 'react';
 import Loader from '../Loader';
 import {UserContext} from './UserContext';
 import Movies from './Movies';
-import BasicCard from "./BasicCard";
-import welcomeStyle from "../static/css/NewWelcom.css"
-import {Link} from "react-router-dom";
+import CardMovie from "./CardMovie";
+import CardCrypto from "./CardCrypto";
+import NavbarHome from "./NavbarHome";
+import homeCards from "../static/css/NewWelcom.css"
 
 const NewWelcome = () => {
     const [userContext, setUserContext] = useContext(UserContext);
@@ -78,36 +79,13 @@ const NewWelcome = () => {
     ) : !userContext.details ? (
         <Loader />
     ) : userContext.cards ? (<div>
-        <nav className="bp4-navbar .modifier bp4-dark">
-            <div className="bp4-navbar-group bp4-align-left">
-                <div className="bp4-navbar-heading"> Welcome&nbsp;
-                    <strong>
-                        {userContext.details.firstName}
-                        {userContext.details.lastName &&
-                            " " + userContext.details.lastName}
-                    </strong> !</div>
-                </div>
-            <div className="bp4-navbar-group bp4-align-right">
-                <span className="bp4-navbar-divider"></span>
-                <button className="bp4-button bp4-minimal bp4-icon-antenna" onClick={refetchHandler}>Refetch</button>
-                <button className="bp4-button bp4-minimal bp4-icon-log-out" onClick={logoutHandler}><Link to={"/"}> Logout </Link></button>
-            </div>
-        </nav>
-        <div className={welcomeStyle.homeCards}><BasicCard
-        name={"Movies"}
-        movieContent={"Enter and explore our movies page." +
-            "Search, save, and view your favourite movies."}
-        is_movies={true}
-        setCards={setCards}
-        />
-        </div>
+        <NavbarHome logoutHandler={logoutHandler}
+                    refetchHandler={refetchHandler}/>
         <div>
-    <BasicCard
-        name={"Crypto"}
-        cryptContent={"Enter and explore our crypto page." +
-            "Search and view the crypto market."}
-        is_movies={false} />
-    </div></div>) : <Movies logoutHandler={logoutHandler}
+            <CardMovie setCards={setCards} />
+            <CardCrypto setCards={setCards} />
+        </div>
+        </div>) : <Movies logoutHandler={logoutHandler}
                       refetchHandler={refetchHandler}/>
 }
 

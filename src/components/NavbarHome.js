@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
 import { UserContext } from './UserContext';
 
-const Navbar = (props) => {
+const NavbarHome = (props) => {
 
     const [searchTerm, setSearchTerm] = useState("");
     const [userContext] = useContext(UserContext);
@@ -20,21 +20,15 @@ const Navbar = (props) => {
                             {userContext.details.lastName &&
                             " " + userContext.details.lastName}
                         </strong> !</div>
-                <span className="bp4-navbar-divider"></span>
-                <button className="bp4-button bp4-minimal bp4-icon-star" >Favourites</button>
-                <button className="bp4-button bp4-minimal bp4-icon-circle-arrow-up" >Popular</button>
             </div>
             <div className="bp4-navbar-group bp4-align-right">
-                <form onSubmit={props.searchMovie(searchTerm)}>
-                <input className="bp4-input" placeholder="Search Movie..." value={searchTerm} onChange={handleOnChange} type="text" />
-                </form>
                 <span className="bp4-navbar-divider"></span>
                 <button className="bp4-button bp4-minimal bp4-icon-antenna" onClick={props.refetchHandler}>Refetch</button>
-                <button className="bp4-button bp4-minimal bp4-icon-log-out" onClick={props.logoutHandler}>Logout</button>
+                <button className="bp4-button bp4-minimal bp4-icon-log-out" style={{color: "lightskyblue"}} onClick={props.logoutHandler}>Logout</button>
             </div>
         </nav>
     </div>
     );
 }
 
-export default Navbar;
+export default NavbarHome;
